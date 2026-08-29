@@ -1,4 +1,4 @@
-Data and scripts for the manuscript entitled "Simulated heatwave decouples predator-prey interactions across soil types in a microcosm experiment"
+Data and scripts for the manuscript entitled "Predator-prey interactions are disrupted under simulated heatwave conditions"
 
 Authors:
 
