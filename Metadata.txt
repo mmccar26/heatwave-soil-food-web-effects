@@ -1,0 +1,267 @@
+METADATA
+
+Repository: heatwave-soil-food-web-effects
+Repository URL: https://github.com/mmccar26/heatwave-soil-food-web-effects
+Branch reviewed: main
+Repository commit reviewed: 5b72d812b83541eed4f9cbb57924370e0fb9e538
+Metadata updated: August 30, 2026
+
+MANUSCRIPT
+
+Title:
+“Predator-prey interactions are disrupted under simulated heatwave conditions”
+
+REPOSITORY DESCRIPTION
+
+This repository contains the data and R scripts used to analyze how simulated
+heatwave conditions, predation, and land-use history affect prey and predator
+abundance in a soil microcosm experiment. The experiment compared microcosms
+established with material from three land-use contexts (grassland, intensive
+agriculture, and urbanized habitats) under ambient and simulated heatwave
+temperature treatments. Collembola were used as prey and rove beetles
+(Staphylinidae) as predators.
+
+AUTHORS
+
+Caroline A. Leung
+Department of BioSciences, Rice University
+Houston, Texas 77005, USA
+Email: carolineleung03@gmail.com
+
+Matthew A. McCary
+Department of BioSciences, Rice University
+Houston, Texas 77005, USA
+Email: mm160@rice.edu
+
+REPOSITORY STRUCTURE
+
+README.md
+Metadata.txt
+
+Data/
+  ambient_temp-nc.csv
+  ambient_temp_final.csv
+  heatwave_temp-nc.csv
+  heatwave_temp_final.csv
+
+Scripts/
+  Fig-1-plot.R
+  Fig-2-plot.R
+  soil_predator_prey_analysis_FINAL.R
+  soil_predator_prey_analysis_no-contamination-FINAL.R
+
+FILE DESCRIPTIONS
+
+README.md
+  Provides the manuscript title and author information.
+
+Metadata.txt
+  Describes the repository contents, data fields, and requirements for running
+  the analyses.
+
+Data/ambient_temp_final.csv
+  Abundance data from the ambient-temperature treatment. The file contains 54
+  observations: three replicate microcosms for each combination of three
+  land-use contexts, two predation treatments, and three harvest weeks.
+  Sampling dates were December 8, 15, and 22, 2023.
+
+Data/ambient_temp-nc.csv
+  Expanded ambient-temperature dataset used by the no-contamination
+  sensitivity analysis. It contains the same 54 experimental observations as
+  ambient_temp_final.csv, along with counts of additional taxa and organisms
+  recovered outside the microcosms. The file contains 13 columns.
+
+Data/heatwave_temp_final.csv
+  Abundance data from the simulated-heatwave treatment. The file contains 54
+  observations: three replicate microcosms for each combination of three
+  land-use contexts, two predation treatments, and three harvest weeks.
+  Sampling dates were February 9, 16, and 23, 2024.
+
+Data/heatwave_temp-nc.csv
+  Expanded simulated-heatwave dataset used by the no-contamination sensitivity
+  analysis. It contains the same 54 experimental observations as
+  heatwave_temp_final.csv, along with processing dates, counts of additional
+  taxa, and organisms recovered outside the microcosms. The
+  file contains 17 columns.
+
+Scripts/Fig-1-plot.R
+  Reproduces Figure 1, which shows mean prey and predator abundance through
+  time across the ambient and heatwave temperature treatments and the three
+  land-use contexts. The figure includes standard errors, raw observations,
+  initial abundances at week 0, treatment colors, and panels A–F. The script
+  writes “arthropod_abundance_with_raw_data.png.”
+
+Scripts/Fig-2-plot.R
+  Reproduces Figure 2, which compares final Collembola abundance at week 3
+  across predation, temperature, and land-use treatments. The script fits a
+  factorial ANOVA, calculates estimated marginal means and Tukey grouping
+  letters, displays raw observations and heatwave-associated percentage
+  changes, and writes “week3_collembola_abundance_raw_data.png.”
+
+Scripts/soil_predator_prey_analysis_FINAL.R
+  Performs the primary analyses of prey and predator abundance across the full
+  experiment and at week 3. The script calculates total predator abundance as
+  the sum of adult and larval Staphylinidae, fits factorial ANOVA models, runs
+  Tukey post-hoc comparisons, produces summary statistics and earlier figure
+  versions, and exports Tukey comparison tables.
+
+Scripts/soil_predator_prey_analysis_no-contamination-FINAL.R
+  Contains the sensitivity-analysis workflow intended to exclude suspected
+  Sminthuridae contamination from the heatwave dataset before repeating the
+  full-experiment analyses. The script imports ambient_temp-nc.csv and
+  heatwave_temp-nc.csv, excludes heatwave observations with Sminthuridae counts
+  greater than 20, removes ancillary count fields, and repeats the prey and
+  predator ANOVAs and Tukey post-hoc comparisons.
+
+DATA DICTIONARY: FINAL ANALYSIS FILES
+
+Both CSV files contain the same ten columns:
+
+site
+  Land-use context from which the experimental material originated.
+  Values: “Grassland,” “Intensive Agriculture,” and “Urbanized.”
+
+predation_trt
+  Experimental predation treatment.
+  “C” = Collembola prey without rove beetles (prey-only treatment).
+  “CB” = Collembola prey with rove beetles (predator-addition treatment).
+
+rep
+  Replicate microcosm identifier within an experimental treatment combination.
+
+harvest_week
+  Week of destructive microcosm harvest. Values: 1, 2, and 3.
+
+harvest_date
+  Calendar date on which the microcosm was harvested, recorded as M/D/YYYY.
+
+analyzer
+  First name of the person who processed or counted the sample.
+
+collembola
+  Count of Collembola recovered from the microcosm. This is the primary prey
+  abundance variable used in the analyses.
+
+staphylinidae
+  Count of adult rove beetles (family Staphylinidae) recovered from the
+  microcosm.
+
+staphylinidae_larval
+  Count of larval rove beetles recovered from the microcosm.
+
+sminthuridae
+  Count of Sminthuridae recovered from the microcosm. This variable is retained
+  to document potential contamination but is not included in the primary
+  Collembola response variable in the final datasets.
+
+DATA DICTIONARY: EXPANDED NO-CONTAMINATION FILES
+
+The two expanded “-nc” files retain the core variables described above and add
+the following fields. Some fields occur in only one of the two files.
+
+date_processed
+  Date on which a sample was processed, recorded as M/D/YY. Present only in
+  heatwave_temp-nc.csv. Some observations have no recorded processing date.
+
+oribatida
+  Count of oribatid mites recovered from the microcosm. Present in both
+  expanded files.
+
+collembola_overhead
+  Count of Collembola recovered outside or above the intended microcosm sample
+  area. Present in both expanded files.
+
+staphylinidae_overhead
+  Count of adult Staphylinidae recovered outside or above the intended
+  microcosm sample area. Present in both expanded files.
+
+larval_overhead
+  Count of larval Staphylinidae recovered outside or above the intended
+  microcosm sample area. Present in both expanded files.
+
+mesostig
+  Count of mesostigmatid mites recovered from the microcosm. Present only in
+  heatwave_temp-nc.csv.
+
+prostig
+  Count of prostigmatid mites recovered from the microcosm. Present only in
+  heatwave_temp-nc.csv.
+
+Note: sminthuridae is present in heatwave_temp-nc.csv but not in
+ambient_temp-nc.csv. It is used to identify and remove suspected contaminated
+heatwave observations in the sensitivity analysis.
+
+EXPERIMENTAL DESIGN REPRESENTED IN THE DATA
+
+Temperature treatments:
+  Ambient
+  Simulated heatwave
+
+Land-use contexts:
+  Grassland
+  Intensive Agriculture
+  Urbanized
+
+Predation treatments:
+  C  = prey only
+  CB = prey + predator
+
+Harvest weeks:
+  1, 2, and 3
+
+Replication:
+  Three replicate microcosms per temperature × land-use context × predation
+  treatment × harvest-week combination.
+
+Initial conditions used by the figure code:
+  Prey treatments began with 20 Collembola per microcosm.
+  Predator-addition treatments began with 5 rove beetles per microcosm.
+
+SOFTWARE AND R PACKAGE REQUIREMENTS
+
+The repository uses R. Packages called across the scripts include:
+
+  broom.mixed
+  dplyr
+  emmeans
+  forcats
+  ggplot2
+  jtools
+  lme4
+  multcomp
+  multcompView
+  readr
+  Rmisc
+  stringr
+  tibble
+  tidyr
+  tidyverse
+  wacolors
+
+REPRODUCIBILITY NOTES
+
+1. Retain the repository’s Data/ and Scripts/ directory structure. Run
+   soil_predator_prey_analysis_FINAL.R from the repository root because it
+   reads files from “./Data/”. Run
+   soil_predator_prey_analysis_no-contamination-FINAL.R from Scripts/ because
+   it reads files from “../Data/”.
+
+2. Fig-1-plot.R reads the final CSV files by filename from the active working
+   directory. Run it from Data/, copy the final CSV files into the working
+   directory, or update its input paths to “Data/...”.
+
+3. Fig-2-plot.R contains a computer-specific setwd() path. Replace or remove
+   that command and set the working directory to Data/ before running the
+   script.
+
+4. The no-contamination script requires ambient_temp-nc.csv and
+   heatwave_temp-nc.csv rather than the two final CSV files.
+
+5. Analysis scripts export Tukey post-hoc tables to the active working
+   directory. Figure scripts likewise save their image outputs in the active
+   working directory.
+
+6. No software environment lockfile, R version, package versions, or formal
+   license file was present in the repository at the commit reviewed. Exact
+   numerical reproducibility may therefore depend on local R and package
+   versions.
